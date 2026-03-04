@@ -1,0 +1,49 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Icon="Mas.png"
+        Title="Мастер пол" MinHeight="450" MinWidth="800">
+    <Grid>
+        <ListBox ItemsSource="{Binding }" Margin="20,20,95,20" x:Name="Listik" Background="#F4E8D3" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid  Background="#67BA80" HorizontalAlignment="Stretch" Margin="20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel  Margin="20">
+                            <TextBlock FontSize="25">
+                                <Run Text="{Binding Path=partner.Type_partner.Nazvanie}"/>
+                                <Run Text="|"/>
+                                <Run Text="{Binding Path=partner.Nazvanie}"/>
+                            </TextBlock>
+                            <TextBlock FontSize="25" Text="{Binding Path=partner.Director}"/>
+                            <TextBlock  FontSize="25" Text="{Binding Path=partner.Telephone}"/>
+                            <TextBlock FontSize="25">
+                                <Run Text="Рейтинг:"/>
+                                <Run Text="{Binding Path=partner.Rayting}"/>
+                                
+                            </TextBlock>
+                        </StackPanel>
+                        <TextBlock FontSize="25" Grid.Column="1" Margin="20" HorizontalAlignment="Right">
+                            <Run Text="{Binding Path=skidka}"/>
+                            <Run Text="%"/>
+                        </TextBlock>
+                        <StackPanel Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top">
+                            <Button  Content="Удалить" Tag="{Binding Path=partner.ID_Partner}" Click="DeletePartner_Click" Name="DeletePartner"/>
+                            <Button  Content="Редактировать" Tag="{Binding Path=partner.ID_Partner}" Click="UpdatePartner_Click" Name="UpdatePartner"/>
+                        </StackPanel>
+                       
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button HorizontalAlignment="Right" VerticalAlignment="Top" Content="Добавить" Margin="20" Name="addPartner" Click="addPartner_Click"/>
+    </Grid>
+</Window>
